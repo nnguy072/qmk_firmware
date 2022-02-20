@@ -13,6 +13,7 @@
 #define EEPROM_CUSTOM_BACKLIGHT (VIA_EEPROM_CUSTOM_CONFIG_ADDR+1)
 #define EEPROM_DEFAULT_OLED (VIA_EEPROM_CUSTOM_CONFIG_ADDR+2)
 #define EEPROM_CUSTOM_ENCODER (VIA_EEPROM_CUSTOM_CONFIG_ADDR+3)
+#define BONGO_ENABLE
 
 typedef union {
     uint8_t raw;
@@ -57,6 +58,7 @@ enum custom_encoder_behavior {
 };
 
 enum oled_modes {
+  OLED_BONGO_CAT,
   OLED_DEFAULT,
   OLED_TIME,
   OLED_OFF,
