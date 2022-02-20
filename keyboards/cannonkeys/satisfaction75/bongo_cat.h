@@ -170,7 +170,7 @@ void eval_anim_state(void)
   }
 }
 
-static void draw_bongo(void)
+static void draw_bongo_cat(void)
 {
   eval_anim_state();
 
@@ -217,4 +217,9 @@ static void draw_bongo(void)
   static char time_str[8] = "";
   sprintf(time_str, "%02d:%02d%s", hour, minute, is_pm ? "pm" : "am");
   oled_write(time_str, false);
+
+  // print caplock indicator
+  led_t led_state = host_keyboard_led_state();
+  oled_set_cursor(18, 6);
+  oled_write_P(PSTR("CAPS"), led_state.caps_lock);
 }
