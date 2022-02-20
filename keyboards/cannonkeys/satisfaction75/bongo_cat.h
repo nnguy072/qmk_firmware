@@ -205,21 +205,27 @@ static void draw_bongo_cat(void)
   sprintf(wpm, "WPM:%03d", get_current_wpm());
   oled_write(wpm, false);
 
-  // calculate && print clock
-  oled_set_cursor(0, 2);
-  uint8_t  hour = last_minute / 60;
-  uint16_t minute = last_minute % 60;
-  bool is_pm = (hour / 12) > 0;
-  hour = hour % 12;
-  if (hour == 0) {
-    hour = 12;
-  }
-  static char time_str[8] = "";
-  sprintf(time_str, "%02d:%02d%s", hour, minute, is_pm ? "pm" : "am");
-  oled_write(time_str, false);
-
   // print caplock indicator
   led_t led_state = host_keyboard_led_state();
-  oled_set_cursor(18, 6);
+  oled_set_cursor(0, 2);
   oled_write_P(PSTR("CAPS"), led_state.caps_lock);
+
+  // NOTE: Uncomment if you want clock enabled and caps to show on the top right
+  // calculate && print clock
+  // oled_set_cursor(0, 2);
+  // uint8_t  hour = last_minute / 60;
+  // uint16_t minute = last_minute % 60;
+  // bool is_pm = (hour / 12) > 0;
+  // hour = hour % 12;
+  // if (hour == 0) {
+  //   hour = 12;
+  // }
+  // static char time_str[8] = "";
+  // sprintf(time_str, "%02d:%02d%s", hour, minute, is_pm ? "pm" : "am");
+  // oled_write(time_str, false);
+
+  // print caplock indicator
+  // led_t led_state = host_keyboard_led_state();
+  // oled_set_cursor(oled_max_chars() - 4, oled_max_lines() - 4);
+  // oled_write_P(PSTR("CAPS"), led_state.caps_lock);
 }
